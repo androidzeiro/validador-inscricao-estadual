@@ -6,7 +6,7 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun main(args: Array<String>) {
-    embeddedServer(Netty, 8081) {
+    embeddedServer(Netty, 8080) {
         routing {
             get("/validar") {
                 val uf = call.request.queryParameters["uf"]
@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
                     return@get
                 }
 
-                call.respondText("{\"valido\":${inscricao.validar(uf)}}", ContentType.Application.Json)
+                call.respondText(inscricao.validar(uf), ContentType.Application.Json)
             }
         }
     }.start(wait = true)
