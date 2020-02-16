@@ -8,7 +8,7 @@ fun String.validar(uf: String) : String{
 
 // Validar Inscrição Estadual do estado do Mato Grosso
 fun validarMT(ie: String) : String{
-    if(ie.length != 11){
+    if(ie.length != 11) {
         return "{\"valido\": false, \"mensagem\": \"Inscrição estadual incorreta\"}"
     }
     val pesoMT = intArrayOf(3, 2, 9, 8, 7, 6, 5, 4, 3, 2)
