@@ -23,15 +23,21 @@ fun main(args: Array<String>) {
                         call.respondText("{\"valido\": false, \"mensagem\": \"UF inválida\"}", ContentType.Application.Json)
                         return@get
                     }
-                    !siglas.contains(uf) -> {
-                        call.respondText("{\"valido\": false, \"mensagem\": \"UF não encontrada\"}", ContentType.Application.Json)
-                        return@get
-                    }
                     inscricao == null -> {
                         call.respondText("{\"valido\": false, \"mensagem\": \"Inscriçao estadual obrigatória\"}", ContentType.Application.Json)
                         return@get
                     }
-                    else -> call.respondText(inscricao.validar(uf), ContentType.Application.Json)
+                    !siglas.contains(uf) -> {
+                        call.respondText("{\"valido\": false, \"mensagem\": \"UF incorreta\"}", ContentType.Application.Json)
+                        return@get
+                    }
+                    else -> {
+                        if(inscricao.validar(uf)) {
+                            call.respondText("{\"valido\": true}", ContentType.Application.Json)
+                        } else {
+                            call.respondText("{\"valido\": false, \"mensagem\": \"Inscrição estadual inválida\"}", ContentType.Application.Json)
+                        }
+                    }
                 }
             }
         }
