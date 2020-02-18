@@ -2,7 +2,7 @@
 fun String.validar(uf: String) : Boolean{
     return when(uf){
         "AC" -> validarAC(this)
-//        "AL" -> validarAL(this)
+        "AL" -> validarAL(this)
 //        "AM" -> validarAM(this)
 //        "AP" -> validarAP(this)
 //        "BA" -> validarBA(this)
@@ -53,6 +53,18 @@ fun validarAC(ie: String) : Boolean{
     return ie == ie.substring(0, 12) + segundoDigito.toString()
 }
 
+// Validar Inscrição Estadual do estado do Alagoas
+fun validarAL(ie: String) : Boolean{
+    if(ie.length != 9) {
+        return false
+    }
+    val peso = intArrayOf(9, 8, 7, 6, 5, 4, 3, 2)
+
+    var digito = calcularDigito(ie.substring(0, 8), peso)
+    digito = if (digito == 10) 0 else digito
+    return ie == ie.substring(0, 8) + digito.toString()
+}
+
 // Validar Inscrição Estadual do estado do Mato Grosso
 fun validarMT(ie: String) : Boolean{
     if(ie.length != 11) {
@@ -75,6 +87,7 @@ fun calcularDigito(str: String, peso: IntArray): Int {
         deslocamentoPeso += digito * peso[peso.size - str.length + indice]
         indice--
     }
+
     deslocamentoPeso %= 11
     deslocamentoPeso = 11 - deslocamentoPeso
     return deslocamentoPeso
