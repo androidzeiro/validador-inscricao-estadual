@@ -10,9 +10,9 @@ fun String.validar(uf: String) : Boolean{
 //        "DF" -> validarDF(this)
 //        "ES" -> validarES(this)
 //        "GO" -> validarGO(this)
-//        "MA" -> validarMA(this)
+        "MA" -> validarMA(this)
         "MT" -> validarMT(this)
-//        "MS" -> validarMS(this)
+        "MS" -> validarMS(this)
 //        "MG" -> validarMG(this)
 //        "PA" -> validarPA(this)
 //        "PB" -> validarPB(this)
@@ -65,7 +65,7 @@ fun validarAL(ie: String) : Boolean{
     return ie == ie.substring(0, 8) + digito.toString()
 }
 
-// Validar Inscrição Estadual do estado do Amapá
+// Validar Inscrição Estadual do estado do Ceará
 fun validarCE(ie: String) : Boolean{
     if(ie.length != 9) {
         return false
@@ -74,6 +74,18 @@ fun validarCE(ie: String) : Boolean{
 
     var digito = calcularDigito(ie.substring(0, 8), peso)
     digito = if (digito == 10 || digito == 11) 0 else digito
+    return ie == ie.substring(0, 8) + digito.toString()
+}
+
+// Validar Inscrição Estadual do estado do Maranhão
+fun validarMA(ie: String) : Boolean{
+    if(ie.length != 9) {
+        return false
+    }
+    val peso = intArrayOf(9, 8, 7, 6, 5, 4, 3, 2)
+
+    var digito = calcularDigito(ie.substring(0, 8), peso)
+    digito = if (digito == 0 || digito == 1) 0 else digito
     return ie == ie.substring(0, 8) + digito.toString()
 }
 
@@ -87,6 +99,18 @@ fun validarMT(ie: String) : Boolean{
     var digito = calcularDigito(ie.substring(0, 10), peso)
     digito = if (digito == 0 || digito == 1) 0 else digito
     return ie == ie.substring(0, 10) + digito.toString()
+}
+
+// Validar Inscrição Estadual do estado do Mato Grosso do Sul
+fun validarMS(ie: String) : Boolean{
+    if(ie.length != 9) {
+        return false
+    }
+    val peso = intArrayOf(9, 8, 7, 6, 5, 4, 3, 2)
+
+    var digito = calcularDigito(ie.substring(0, 8), peso)
+    digito = if (digito > 9) 0 else digito
+    return ie == ie.substring(0, 8) + digito.toString()
 }
 
 // Função de Módulo 11
