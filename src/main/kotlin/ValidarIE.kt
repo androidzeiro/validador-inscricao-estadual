@@ -6,7 +6,7 @@ fun String.validar(uf: String) : Boolean{
 //        "AM" -> validarAM(this)
 //        "AP" -> validarAP(this)
 //        "BA" -> validarBA(this)
-//        "CE" -> validarCE(this)
+        "CE" -> validarCE(this)
 //        "DF" -> validarDF(this)
 //        "ES" -> validarES(this)
 //        "GO" -> validarGO(this)
@@ -62,6 +62,18 @@ fun validarAL(ie: String) : Boolean{
 
     var digito = calcularDigito(ie.substring(0, 8), peso)
     digito = if (digito == 10) 0 else digito
+    return ie == ie.substring(0, 8) + digito.toString()
+}
+
+// Validar Inscrição Estadual do estado do Amapá
+fun validarCE(ie: String) : Boolean{
+    if(ie.length != 9) {
+        return false
+    }
+    val peso = intArrayOf(9, 8, 7, 6, 5, 4, 3, 2)
+
+    var digito = calcularDigito(ie.substring(0, 8), peso)
+    digito = if (digito == 10 || digito == 11) 0 else digito
     return ie == ie.substring(0, 8) + digito.toString()
 }
 
