@@ -7,10 +7,10 @@ class ValidadorIEMT  : ValidadorIE{
 
         val deslocamentoPeso = calcularDeslocamentoPeso(ie.substring(0, 10), peso)
         val resto = deslocamentoPeso % 11
-        if (resto == 0 || resto == 1) {
-            return ie == ie.substring(0, 10) + "0"
-        }
         var digito = 11 - resto
+        if (resto == 0 || resto == 1) {
+            digito = 0
+        }
         return ie == ie.substring(0, 10) + digito.toString()
     }
 }
