@@ -3,6 +3,9 @@ class ValidadorIEMS  : ValidadorIE{
         if(ie.length != 9) {
             return false
         }
+        if(ie.substring(0, 2) != "28"){
+            return false
+        }
         val peso = intArrayOf(9, 8, 7, 6, 5, 4, 3, 2)
 
         val deslocamentoPeso = calcularDeslocamentoPeso(ie.substring(0, 8), peso)

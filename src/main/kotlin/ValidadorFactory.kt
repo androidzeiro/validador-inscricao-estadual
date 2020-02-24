@@ -29,7 +29,7 @@ class ValidadorFactory {
             "SC" -> ValidadorIESC()
 //            "SP" -> ValidadorIESP()
             "SE" -> ValidadorIESE()
-//            "TO" -> ValidadorIETO()
+            "TO" -> ValidadorIETO()
             else -> TODO()
         }
     }
